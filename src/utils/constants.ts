@@ -240,11 +240,6 @@ export const CONTRACT_ABI = [
                 name: 'to',
                 type: 'address',
             },
-            {
-                internalType: 'uint256',
-                name: 'tokenId',
-                type: 'uint256',
-            },
         ],
         name: 'safeMint',
         outputs: [],
@@ -407,4 +402,4 @@ export const CONTRACT_ABI = [
         stateMutability: 'nonpayable',
         type: 'function',
     },
-]
+] as const
