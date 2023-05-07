@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Col, Row } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 import { WalletOutlined } from '@ant-design/icons'
-import { connectWallet } from '../services/connectWallet.ts'
+import { SignIn } from '../services/signUserSession'
 
 export default () => {
     return (
@@ -10,7 +10,7 @@ export default () => {
             <Header>
                 <Row>
                     <Col push={22}>
-                        <Button type='primary' size='large' icon={<WalletOutlined />} onClick={connectWallet}>
+                        <Button type='primary' size='large' icon={<WalletOutlined />} onClick={SignIn}>
                             Connect to MetaMask
                         </Button>
                     </Col>
