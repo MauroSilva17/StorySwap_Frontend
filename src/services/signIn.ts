@@ -1,5 +1,6 @@
 import { ethers } from 'ethers'
 import axios from 'axios'
+import { randomString } from '../utils/randomString'
 
 export const signIn = async (): Promise<boolean> => {
     try {
@@ -16,17 +17,18 @@ export const signIn = async (): Promise<boolean> => {
         const chainId = chain.toString()
 
         // Generating signing message
-        const secretCode = process.env.REACT_APP_SIGNATURE_KEY as string
-        const secretSignature = `Message for address: ${address} and chain ${chainId} with code: ${secretCode}`
+        const randomCode = randomString()
+
+        const message = `Address: ${address}, chain ${chainId}, Code: ${randomCode}`
 
         // User signature
-        const signed = (await signer).signMessage(secretSignature)
+        const signed = (await signer).signMessage(message)
         const signature = (await signed).toString()
 
         // User authentication endpoint
         const response = await axios.post(
             `${process.env.REACT_APP_BACKEND_ENDPOINT as string}/auth/signin`,
-            { address, chainId, signature },
+            { address, chainId, signature, message },
             {
                 withCredentials: true,
                 headers: {
