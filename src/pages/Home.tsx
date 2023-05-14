@@ -11,26 +11,37 @@ export default () => {
     const [balance, setBalance] = useState('0')
 
     const checkBalance = async () => {
-        // // sessionMiddleware to send cookie and receive signature
+        // // Get address signer
+        // const provider = new ethers.BrowserProvider(window.ethereum)
+
+        // // MetaMask requires requesting permission to connect users accounts
+        // const account = await provider.send('eth_requestAccounts', [])
+        // // The MetaMask plugin also allows signing transactions to
+        // // send ether and pay to change state within the blockchain.
+        // // For this, you need the account signer...
+        // const signer = provider.getSigner()
+
+        //     ************** FOR TESTING ************* Send cookie authentication route
         sessionProtect()
+
+        // const signature = Cookies.get('signature')
         // // creating instance of contract
-        // const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer)
+        // const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signature)
         // // Get user user address
         // const userAdress = signer.address
 
         // const userBalance = await contract.balanceOf(userAdress)
         // setBalance(userBalance)
 
-        alert('minted func')
+        alert('check balance func')
     }
     const mint = async () => {
-        // // creating instance of contract
+        // creating instance of contract
         // const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer)
         // const userAddress = signer.address
-
         // const tx = await contract.safeMint(userAddress)
         // await tx.wait()
-        alert('getBalance func')
+        // alert('mint func')
     }
 
     return (
