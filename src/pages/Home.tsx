@@ -3,7 +3,8 @@ import { ethers } from 'ethers'
 import { Button, Col, Divider, Input, Row, Space } from 'antd'
 // import { signer } from './../utils/provider'
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from './../utils/constants'
-import { sessionProtect } from '../services/sessionProtect'
+import { sessionProtect } from '../services/auth/sessionProtect'
+import { nonce } from '../services/auth/nonce'
 
 const style: React.CSSProperties = { background: '#0092ff', padding: '8px 0' }
 

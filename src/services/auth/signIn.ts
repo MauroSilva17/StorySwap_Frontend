@@ -1,6 +1,8 @@
 import { ethers } from 'ethers'
 import axios from 'axios'
-import { randomString } from '../utils/randomString'
+import { randomString } from '../../utils/randomString'
+import { nonce } from './nonce'
+import { useState } from 'react'
 
 export const signIn = async (): Promise<boolean> => {
     try {
@@ -11,15 +13,22 @@ export const signIn = async (): Promise<boolean> => {
         const account = await provider.send('eth_requestAccounts', [])
         const signer = provider.getSigner()
 
-        // Get user's data
-        const address = (await signer).address
-        const chain = (await signer).provider._network.chainId
-        const chainId = chain.toString()
+        // // Get user's data
+        // const address = (await signer).address
+        // const chain = (await signer).provider._network.chainId
+        // const chainId = chain.toString()
 
-        // Generating signing message
-        const randomCode = randomString()
+        // Get random code from GET /nonce to sign
+        let randomNumber = await nonce()
+        if (!randomNumber) {
+            randomNumber = 0
+        }
+        const nonceCode = randomNumber.toString()
 
-        const message = `Address: ${address}, chain ${chainId}, Code: ${randomCode}`
+        console.log('nonce Code: ' + nonceCode)
+
+        // Generating a random string, with code from GET /nonce request
+        const message = `***->> Private code :: ${nonceCode} :: Do you wish to sign ? :: ->>`
 
         // User signature
         const signed = (await signer).signMessage(message)
@@ -28,7 +37,7 @@ export const signIn = async (): Promise<boolean> => {
         // User authentication endpoint
         const response = await axios.post(
             `${process.env.REACT_APP_BACKEND_ENDPOINT as string}/auth/signin`,
-            { address, chainId, signature, message },
+            { signature, nonceCode },
             {
                 withCredentials: true,
                 headers: {

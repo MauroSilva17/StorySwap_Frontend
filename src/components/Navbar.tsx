@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Col, Row } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 import { WalletOutlined } from '@ant-design/icons'
-import { signIn } from '../services/signIn'
+import { signIn } from '../services/auth/signIn'
 
 export default () => {
     return (
