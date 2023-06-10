@@ -1,7 +1,11 @@
-import { randomBytes } from 'ethers'
-import { v4 as uuidv4 } from 'uuid'
-
 export const randomString = (): string => {
-    return uuidv4()
-    // return randomBytes(16).toString()
+    const length = 10 // Desired length of the random string
+    let result = ''
+
+    for (let i = 0; i < length; i++) {
+        const randomDigit = Math.floor(Math.random() * 10) // Generate a random digit (0-9)
+        result += randomDigit.toString()
+    }
+
+    return result
 }
