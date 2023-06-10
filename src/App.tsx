@@ -7,13 +7,13 @@ import Navbar from './components/Navbar'
 import '@rainbow-me/rainbowkit/styles.css'
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
-import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains'
+import { mainnet, polygon, optimism, arbitrum, goerli, arbitrumGoerli } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 
 export default function App() {
     // /** RainbowKit config's **
-    const { chains, publicClient } = configureChains([mainnet, polygon, optimism, arbitrum], [alchemyProvider({ apiKey: process.env.REACT_APP_ALCHEMY_API_KEY as string }), publicProvider()])
+    const { chains, publicClient } = configureChains([mainnet, polygon, optimism, arbitrum, goerli], [alchemyProvider({ apiKey: process.env.REACT_APP_ALCHEMY_API_KEY as string }), publicProvider()])
 
     const { connectors } = getDefaultWallets({
         appName: 'StorySwap',
